@@ -20,7 +20,11 @@ require_once 'process.php';
 <?
 $mysqli = new mysqli('localhost', 'root', '', 'crud') or die(mysqli_error($mysqli));
 $result = $mysqli->query("SELECT * FROM data") or die($mysqli->error);
-pre_r($result); 
+// pre_r($result); 
+pre_r($result->fetch_assoc());
+// more data by BD
+pre_r($result->fetch_assoc());
+
 
 function pre_r($array)
 {
