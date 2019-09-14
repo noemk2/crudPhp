@@ -16,24 +16,24 @@
 </head>
 
 <body>
-    <? require_once 'process.php'; ?>
+    <?php require_once 'process.php'; ?>
     <!-- alert message -->
-    <?
+    <?php
     if (isset($_SESSION['message'])) : ?>
 
         <div class="alert alert-<?= $_SESSION['msg_type']; ?>">
 
-            <? echo $_SESSION['message'];
+            <?php echo $_SESSION['message'];
                 unset($_SESSION['message']); ?>
 
         </div>
 
-    <? endif;
+    <?php endif;
     ?>
 
     <div class="container">
 
-        <? $mysqli = new mysqli('localhost', 'root', '', 'crud') or die(mysqli_error($mysqli));
+        <?php $mysqli = new mysqli('localhost', 'root', '', 'crud') or die(mysqli_error($mysqli));
         $result = $mysqli->query("SELECT * FROM data") or die($mysqli->error);
         // pre_r($result);
         ?>
@@ -47,20 +47,20 @@
                         <th colspan="2">Action</th>
                     </tr>
                 </thead>
-                <? while ($row = $result->fetch_assoc()) : ?>
+                <?php while ($row = $result->fetch_assoc()) : ?>
                     <tr>
-                        <td><? echo $row['name']; ?></td>
-                        <td><? echo $row['location']; ?> </td>
+                        <td><?php echo $row['name']; ?></td>
+                        <td><?php echo $row['location']; ?> </td>
                         <td>
-                            <a href="index.php?edit=<? echo $row['id']; ?>" class="btn btn-info">Edit</a>
-                            <a href="process.php?delete=<? echo $row['id']; ?>" class="btn btn-danger">Delete</a>
+                            <a href="index.php?edit=<?php echo $row['id']; ?>" class="btn btn-info">Edit</a>
+                            <a href="process.php?delete=<?php echo $row['id']; ?>" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
-                <? endwhile; ?>
+                <?php endwhile; ?>
             </table>
         </div>
 
-        <?
+        <?php
         function pre_r($array)
         {
             # code...
@@ -73,22 +73,22 @@
         <div>
             <div class="row justify-content-center">
                 <form action="process.php" method="post">
-                    <input type="hidden" name="id" value="<? echo $id; ?>">
+                    <input type="hidden" name="id" value="<?php echo $id; ?>">
                     <div class="form-group">
                         <label>Name:</label>
-                        <input type="text" value="<? echo $name; ?>" name="name" placeholder="Enter ur name" class="form-control">
+                        <input type="text" value="<?php echo $name; ?>" name="name" placeholder="Enter ur name" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Location:</label>
-                        <input type="text" value="<? echo $location; ?>" name="location" placeholder="Enter ur location" class="form-control">
+                        <input type="text" value="<?php echo $location; ?>" name="location" placeholder="Enter ur location" class="form-control">
                     </div>
 
                     <div class="form-group">
-                        <? if ($update == true) : ?>
+                        <?php if ($update == true) : ?>
                             <button type="summit" name="update" class="btn btn-info">Update</button>
-                        <? else : ?>
+                        <?php else : ?>
                             <button type="summit" name="save" class="btn btn-primary">Save</button>
-                        <? endif; ?>
+                        <?php endif; ?>
                     </div>
 
                 </form>
